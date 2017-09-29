@@ -47,7 +47,7 @@ for z in range(len(dataa)):
     #menentukan fungsi ADDI
     if a=='20':                         
         a='ADDI'
-    #menentukan fungsi ADDI
+    #menentukan fungsi SUBI
     if a=='22':                         
         a='SUBI'
     #menentukan fungsi ADD
