@@ -37,17 +37,17 @@ for z in range(len(dataa)):
     dataIR=IR
     data_operand=dataIR[2:4]            #parsing operand
     a=data_operand                      #untuk mengetahui perintah operand
-    data_regdepan=dataIR[4:6]           #Parsing R1
+    data_regdepan=dataIR[4:5]             #Parsing R1
     b=data_regdepan                     #untuk mengetahui R1
-    data_regtengah=dataIR[6:8]          #Parsing R2
+    data_regtengah=dataIR[5:6]            #Parsing R2
     c=data_regtengah                    #untuk mengetahui R2
-    data_regbelakang=dataIR[8:10]       #Parsing R3
+    data_regbelakang=dataIR[6:7]          #Parsing R3
     d=data_regbelakang                  #untuk mengetahui R3
 
     #menentukan fungsi ADDI
     if a=='20':                         
         a='ADDI'
-    #menentukan fungsi ADDI
+    #menentukan fungsi SUBI
     if a=='22':                         
         a='SUBI'
     #menentukan fungsi ADD
@@ -95,33 +95,28 @@ for z in range(len(dataa)):
         d=hex(d)
         d=str(d)
         data_regbelakang=dataIR[6:10]
-        print('PC=',z,'IR=',IRR,a,'R'+b,'#'+'0x'+'{0:0>4x}'.format(int(d,16)))
+        print('PC=','0x'+z,'IR=',IRR,a,'R'+b,'R'+c,'#'+'0x'+'{0:0>4x}'.format(int(d,16)))
         data_regtengah=int(data_regtengah,16)
         data_regbelakang=int(data_regbelakang,16)
     elif data_operand=='32':
-        print('PC=',z,'IR=',IRR,a,'R'+b,'R'+c)
+        print('PC=','0x'+z,'IR=',IRR,a,'R'+b,'R'+c)
         data_regtengah=int(data_regtengah,16)
         data_regbelakang=int(data_regbelakang,16)
     else:
         data_regtengah=int(data_regtengah,16)
         data_regbelakang=int(data_regbelakang,16)
-        print('PC=',z,'IR=',IRR,a,'R'+b,'R'+c,'R'+d)
+        print('PC=','0x'+z,'IR=',IRR,a,'R'+b,'R'+c,'R'+d)
         data_RB=int(data_reg[data_regtengah],16)
         data_RC=int(data_reg[data_regbelakang],16)
         
     #menentukan jenis operasi yang akan digunakan
-    if data_operand=='10': 
-        hasil = data_RB + data_RC
-
     if data_operand=='20':
-        data_regdepan=int(data_regdepan,16)
-        data_regdepan=int(data_reg[data_regdepan],16)
-        hasil = data_regdepan + data_regbelakang
+        data_regtengah=int(data_reg[data_regtengah],16)
+        hasil = data_regtengah + data_regbelakang 
 
     if data_operand=='22':
-        data_regdepan=int(data_regdepan,16)
-        data_regdepan=int(data_reg[data_regdepan],16)
-        hasil = data_regdepan - data_regbelakang
+        data_regtengah=int(data_reg[data_regtengah],16)
+        hasil = data_regtengah - data_regbelakang
         
     if data_operand=='10': 
         hasil = data_RB + data_RC
